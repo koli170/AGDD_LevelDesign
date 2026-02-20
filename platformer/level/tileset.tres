@@ -10,7 +10,11 @@ texture = ExtResource("1_olns6")
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_olns6"]
 texture = ExtResource("1_olns6")
 1:0/0 = 0
+2:0/0 = 0
 1:1/0 = 0
+2:1/0 = 0
+1:2/0 = 0
+2:2/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 1
