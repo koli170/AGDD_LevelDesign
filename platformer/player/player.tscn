@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://vh7pmputa7r3"]
 
+[ext_resource type="Texture2D" uid="uid://dxai67mbro5h1" path="res://player/purple.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://dbslsctwk26jh" path="res://player/player.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://sjod173axgwf" path="res://player/jump.wav" id="5"]
-[ext_resource type="Texture2D" uid="uid://cc7o7t0ramd6y" path="res://player/robot.webp" id="9"]
 
 [sub_resource type="RectangleShape2D" id="11"]
-size = Vector2(42.5, 54.5)
+size = Vector2(42.5, 62.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=2084422594]
 scale = Vector2(0.8, 0.8)
@@ -20,10 +20,8 @@ collision_mask = 8
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1729491429]
 position = Vector2(0, -14)
-texture = ExtResource("9")
-hframes = 8
-vframes = 8
-frame = 42
+scale = Vector2(2, 2)
+texture = ExtResource("2_g1dw6")
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1796117935]
 position = Vector2(0, -28)
@@ -34,7 +32,8 @@ limit_right = 1425
 limit_bottom = 690
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1753182360]
-position = Vector2(0, -14)
+position = Vector2(0, -13.749994)
+scale = Vector2(0.9999998, 0.9999998)
 shape = SubResource("11")
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=786713367]
