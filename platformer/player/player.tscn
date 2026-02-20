@@ -9,7 +9,6 @@ size = Vector2(42.5, 62.5)
 
 [node name="Player" type="CharacterBody2D" unique_id=2084422594]
 scale = Vector2(0.8, 0.8)
-collision_mask = 30
 floor_constant_speed = true
 platform_on_leave = 2
 script = ExtResource("3")
