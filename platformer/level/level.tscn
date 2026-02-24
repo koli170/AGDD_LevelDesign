@@ -1,9 +1,19 @@
 [gd_scene format=4 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://level/tileset.tres" id="1"]
+[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://level/level.gd" id="1_5gx2l"]
 
-[node name="Level" type="Node2D" unique_id=1800714219]
+[node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
+script = ExtResource("1_5gx2l")
+top_left = NodePath("TopLeft")
+bottom_right = NodePath("BottomRight")
+
+[node name="TopLeft" type="Marker2D" parent="." unique_id=1782913439]
+position = Vector2(-490, -459)
+
+[node name="BottomRight" type="Marker2D" parent="." unique_id=537173543]
+position = Vector2(656, 176)
 
 [node name="Layer0" type="TileMapLayer" parent="." unique_id=1891389520]
 use_parent_material = true
