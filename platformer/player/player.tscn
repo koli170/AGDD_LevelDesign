@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://vh7pmputa7r3"]
 
-[ext_resource type="Texture2D" uid="uid://bymvnu3083j4c" path="res://player/purpletall.png" id="2_g1dw6"]
+[ext_resource type="Texture2D" uid="uid://bb5etcxqvrtp6" path="res://player/ThomasButPBB.png" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://dbslsctwk26jh" path="res://player/player.gd" id="3"]
 [ext_resource type="AudioStream" uid="uid://sjod173axgwf" path="res://player/jump.wav" id="5"]
 
 [sub_resource type="RectangleShape2D" id="11"]
-size = Vector2(20.000006, 42.500015)
+size = Vector2(25.000017, 45.000023)
 
 [node name="Player" type="CharacterBody2D" unique_id=2084422594]
 scale = Vector2(0.8, 0.8)
@@ -31,8 +31,8 @@ limit_right = 1425
 limit_bottom = 690
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1753182360]
-position = Vector2(0, -13.749994)
-scale = Vector2(0.9999994, 0.9999994)
+position = Vector2(-4.470347e-07, -13.749991)
+scale = Vector2(0.99999917, 0.99999917)
 shape = SubResource("11")
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="." unique_id=786713367]
