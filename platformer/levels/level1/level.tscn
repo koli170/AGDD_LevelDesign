@@ -27,3 +27,7 @@ rendering_quadrant_size = 32
 
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("4_vkbyq")]
 position = Vector2(401, -167)
+
+[node name="Spring2" parent="." unique_id=896547041 instance=ExtResource("3_qohg2")]
+position = Vector2(184, -6.9999924)
+rotation = -0.58119464
