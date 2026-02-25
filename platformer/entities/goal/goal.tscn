@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bwy4m1x76lqlr"]
+
+[ext_resource type="Script" uid="uid://2cpwcw7cudkr" path="res://entities/goal/goal.gd" id="1_6aq0c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mdcsh"]
+
+[node name="Goal" type="Marker2D" unique_id=134595572]
+script = ExtResource("1_6aq0c")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2113942781]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=414392338]
+shape = SubResource("CircleShape2D_mdcsh")

@@ -1,8 +1,9 @@
 [gd_scene format=4 uid="uid://ctgumjaytuoch"]
 
-[ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://level/tileset.tres" id="1"]
-[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://level/level.gd" id="1_5gx2l"]
-[ext_resource type="PackedScene" uid="uid://dp2mq078d3g7w" path="res://level/Spring/Spring.tscn" id="3_qohg2"]
+[ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="1"]
+[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level.gd" id="1_5gx2l"]
+[ext_resource type="PackedScene" uid="uid://dp2mq078d3g7w" path="res://entities/spring/spring.tscn" id="3_qohg2"]
+[ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="4_vkbyq"]
 
 [node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
@@ -23,3 +24,6 @@ tile_set = ExtResource("1")
 rendering_quadrant_size = 32
 
 [node name="Spring" parent="." unique_id=1867940311 instance=ExtResource("3_qohg2")]
+
+[node name="Goal" parent="." unique_id=134595572 instance=ExtResource("4_vkbyq")]
+position = Vector2(401, -167)

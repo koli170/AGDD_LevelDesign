@@ -1,5 +1,5 @@
 extends Node2D
-
+class_name Level
 
 @export var top_left: Marker2D
 @export var bottom_right: Marker2D

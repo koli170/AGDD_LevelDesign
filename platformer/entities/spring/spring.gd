@@ -3,8 +3,8 @@ extends Node2D
 var is_furled : bool
 var unfurled_timer : float
 const UNFURLED_SEC: float = 1
-var furled_sprite : Resource = load("res://level/Spring/SpringFurled.png")
-var unfurled_sprite : Resource = load("res://level/Spring/SpringUnfurled.png")
+var furled_sprite : Resource = load("res://entities/spring/SpringFurled.png")
+var unfurled_sprite : Resource = load("res://entities/spring/SpringUnfurled.png")
 @onready var spring_sprite : Sprite2D = $Sprite2D
 
 # Called when the node enters the scene tree for the first time.

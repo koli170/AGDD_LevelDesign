@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpi1wpsycnxm5"
-path="res://.godot/imported/SpringFurled.png-5329eb69fd22f9b4a02d77aea4a6e391.ctex"
+uid="uid://c0jokrs0h6lwn"
+path="res://.godot/imported/leveldesigntilemap.png-efedc49df078d7a4bb2b890e3cca2567.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/Spring/SpringFurled.png"
-dest_files=["res://.godot/imported/SpringFurled.png-5329eb69fd22f9b4a02d77aea4a6e391.ctex"]
+source_file="res://levels/leveldesigntilemap.png"
+dest_files=["res://.godot/imported/leveldesigntilemap.png-efedc49df078d7a4bb2b890e3cca2567.ctex"]
 
 [params]
 

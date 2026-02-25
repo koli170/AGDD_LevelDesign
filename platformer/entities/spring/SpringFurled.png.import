@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d0ops71sk562g"
-path="res://.godot/imported/tiles.webp-4f56cd8ea452f8ba920d65a0b9099010.ctex"
+uid="uid://cpi1wpsycnxm5"
+path="res://.godot/imported/SpringFurled.png-d2f13f4a117a58e0efe33dac5f162a1a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://level/tiles.webp"
-dest_files=["res://.godot/imported/tiles.webp-4f56cd8ea452f8ba920d65a0b9099010.ctex"]
+source_file="res://entities/spring/SpringFurled.png"
+dest_files=["res://.godot/imported/SpringFurled.png-d2f13f4a117a58e0efe33dac5f162a1a.ctex"]
 
 [params]
 
