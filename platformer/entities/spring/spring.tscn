@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cooaauth07smy" path="res://entities/spring/spring.gd" id="1_d0qin"]
 [ext_resource type="Texture2D" uid="uid://cpi1wpsycnxm5" path="res://entities/spring/SpringFurled.png" id="2_cad8l"]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0qin"]
 size = Vector2(16, 4)
 

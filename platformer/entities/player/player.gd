@@ -24,8 +24,12 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
+	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
 	if is_on_floor():
 		_double_jump_charged = true
+		velocity.x = direction
+	else:
+		velocity.x = move_toward(velocity.x, direction, delta*ACCELERATION_SPEED)
 	if Input.is_action_just_pressed("jump" + action_suffix):
 		try_jump()
 	elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
@@ -33,9 +37,6 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= 0.6
 	# Fall.
 	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
-
-	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
-	velocity.x = direction
 
 
 	floor_stop_on_slope = not platform_detector.is_colliding()
