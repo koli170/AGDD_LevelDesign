@@ -1,5 +1,6 @@
 extends Marker2D
 
+@export var next_level: PackedScene
 @onready var area: Area2D = $Area2D
 var is_touching := false
 
@@ -9,7 +10,7 @@ func _ready():
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_touching:
-		print("NEXT LEVEL PLEASE.")
+		get_tree().change_scene_to_packed(next_level)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

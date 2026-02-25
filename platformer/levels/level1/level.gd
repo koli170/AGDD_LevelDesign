@@ -1,10 +1,11 @@
 extends Node2D
-class_name Level
 
 @export var top_left: Marker2D
 @export var bottom_right: Marker2D
 
 func _ready():
+	GameManager.pause_menu = $InterfaceLayer/PauseMenu
+	
 	for child in get_children():
 		if child is Player:
 			var camera = child.get_node("Camera")

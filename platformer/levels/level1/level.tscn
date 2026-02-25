@@ -1,15 +1,20 @@
 [gd_scene format=4 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="1"]
-[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level.gd" id="1_5gx2l"]
+[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level1/level.gd" id="1_5gx2l"]
+[ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="2_2itdq"]
 [ext_resource type="PackedScene" uid="uid://dp2mq078d3g7w" path="res://entities/spring/spring.tscn" id="3_qohg2"]
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="4_vkbyq"]
+[ext_resource type="PackedScene" uid="uid://bhuk35terwbin" path="res://levels/level2/level.tscn" id="5_j6qib"]
+[ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_dg6gm"]
 
 [node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
 script = ExtResource("1_5gx2l")
 top_left = NodePath("TopLeft")
 bottom_right = NodePath("BottomRight")
+
+[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("2_2itdq")]
 
 [node name="TopLeft" type="Marker2D" parent="." unique_id=1782913439]
 position = Vector2(-490, -459)
@@ -27,3 +32,9 @@ rendering_quadrant_size = 32
 
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("4_vkbyq")]
 position = Vector2(401, -167)
+next_level = ExtResource("5_j6qib")
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
+layer = 100
+
+[node name="PauseMenu" parent="InterfaceLayer" unique_id=1254471297 instance=ExtResource("6_dg6gm")]
