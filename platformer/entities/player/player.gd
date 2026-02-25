@@ -1,0 +1,58 @@
+class_name Player extends CharacterBody2D
+
+## ADDED BY US:
+var block_jump := false
+
+const WALK_SPEED = 300.0
+const ACCELERATION_SPEED = WALK_SPEED * 6.0
+const JUMP_VELOCITY = -725.0
+## Maximum speed at which the player can fall.
+const TERMINAL_VELOCITY = 700
+
+## The player listens for input actions appended with this suffix.[br]
+## Used to separate controls for multiple players in splitscreen.
+@export var action_suffix := ""
+
+var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
+@onready var platform_detector := $PlatformDetector as RayCast2D
+@onready var sprite := $Sprite2D as Sprite2D
+@onready var jump_sound := $Jump as AudioStreamPlayer2D
+@onready var camera := $Camera as Camera2D
+var _double_jump_charged := false
+
+func _ready() -> void:
+	add_to_group("player")
+
+func _physics_process(delta: float) -> void:
+	if is_on_floor():
+		_double_jump_charged = true
+	if Input.is_action_just_pressed("jump" + action_suffix):
+		try_jump()
+	elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
+		# The player let go of jump early, reduce vertical momentum.
+		velocity.y *= 0.6
+	# Fall.
+	velocity.y = minf(TERMINAL_VELOCITY, velocity.y + gravity * delta)
+
+	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
+	velocity.x = direction
+
+
+	floor_stop_on_slope = not platform_detector.is_colliding()
+	move_and_slide()
+	
+
+
+func try_jump() -> void:
+	if block_jump:
+		return
+	if is_on_floor():
+		jump_sound.pitch_scale = 1.0
+	elif _double_jump_charged:
+		_double_jump_charged = false
+		velocity.x *= 2.5
+		jump_sound.pitch_scale = 1.5
+	else:
+		return
+	velocity.y = JUMP_VELOCITY
+	jump_sound.play()
