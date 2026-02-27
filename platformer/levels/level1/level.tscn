@@ -1,10 +1,10 @@
 [gd_scene format=4 uid="uid://ctgumjaytuoch"]
 
 [ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="1"]
-[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level1/level.gd" id="1_5gx2l"]
+[ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level.gd" id="1_5gx2l"]
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="2_2itdq"]
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="4_vkbyq"]
-[ext_resource type="PackedScene" uid="uid://bhuk35terwbin" path="res://levels/level2/level.tscn" id="5_j6qib"]
+[ext_resource type="PackedScene" uid="uid://b7umxxhxyoveg" path="res://levels/level2/level.tscn" id="5_j6qib"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_dg6gm"]
 
 [node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
