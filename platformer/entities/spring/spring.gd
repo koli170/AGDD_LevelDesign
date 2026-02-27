@@ -1,12 +1,12 @@
 extends Node2D
 
-var is_furled : bool
-var unfurled_timer : float
-const UNFURLED_SEC: float = 1
-var furled_sprite : Resource = load("res://entities/spring/SpringFurled.png")
-var unfurled_sprite : Resource = load("res://entities/spring/SpringUnfurled.png")
-var bounce_vec : Vector2 = Vector2(0,-1000)
-@onready var spring_sprite : Sprite2D = $Sprite2D
+var is_furled: bool = false
+var unfurled_timer: float = 0.0
+const UNFURLED_SEC: float = 1.0
+var furled_sprite: Resource = load("res://entities/spring/SpringFurled.png")
+var unfurled_sprite: Resource = load("res://entities/spring/SpringUnfurled.png")
+var bounce_vec: Vector2 = Vector2(0,-1000)
+@onready var spring_sprite: Sprite2D = $Sprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,9 +23,7 @@ func _process(delta: float) -> void:
 		is_furled = true
 		unfurled_timer = 0
 		spring_sprite.texture = furled_sprite
-		
-		
-		
+
 
 
 func _on_static_body_2d_body_entered(body: Node2D) -> void:
