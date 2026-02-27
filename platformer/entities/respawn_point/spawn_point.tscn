@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://l44acxgsvke"]
+
+[ext_resource type="Script" uid="uid://gto5k2clqao" path="res://entities/respawn_point/spawn_point.gd" id="1_2ylg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ylg2"]
+
+[node name="Spawn" type="Marker2D" unique_id=2063272948]
+script = ExtResource("1_2ylg2")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1470578932]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=11815129]
+shape = SubResource("RectangleShape2D_2ylg2")

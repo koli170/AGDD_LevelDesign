@@ -54,7 +54,7 @@ func process_tilemap(tilemap: TileMapLayer, _rid: RID) -> void:
 	var cell = tilemap.local_to_map(local_pos)
 	
 	# Check a small radius of cells in case of edge contacts
-	for dx in range(0, 1):
+	for dx in range(-2, 2):
 		for dy in range(-2, 2):
 			var check_cell = cell + Vector2i(dx, dy)
 			var tile_data: TileData = tilemap.get_cell_tile_data(check_cell)
