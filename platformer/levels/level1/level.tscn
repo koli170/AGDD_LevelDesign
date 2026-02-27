@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="2_2itdq"]
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="4_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://b7umxxhxyoveg" path="res://levels/level2/level.tscn" id="5_j6qib"]
+[ext_resource type="PackedScene" uid="uid://ceclqpi24285e" path="res://levels/background.tscn" id="6_2itdq"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_dg6gm"]
 
 [node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
@@ -35,3 +36,9 @@ next_level = ExtResource("5_j6qib")
 layer = 100
 
 [node name="PauseMenu" parent="InterfaceLayer" unique_id=1254471297 instance=ExtResource("6_dg6gm")]
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=153577594]
+layer = -100
+
+[node name="Background" parent="BG" unique_id=1206663213 instance=ExtResource("6_2itdq")]
+z_index = 0
