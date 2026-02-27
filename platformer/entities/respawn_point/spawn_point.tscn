@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://l44acxgsvke"]
 
 [ext_resource type="Script" uid="uid://gto5k2clqao" path="res://entities/respawn_point/spawn_point.gd" id="1_2ylg2"]
+[ext_resource type="Texture2D" uid="uid://crvsgi7j14u8d" path="res://entities/respawn_point/basic_flag.png" id="2_4ln0d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ylg2"]
 
@@ -11,3 +12,7 @@ script = ExtResource("1_2ylg2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=11815129]
 shape = SubResource("RectangleShape2D_2ylg2")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=756941741]
+scale = Vector2(2, 2)
+texture = ExtResource("2_4ln0d")

@@ -46,9 +46,6 @@ rendering_quadrant_size = 32
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("4_1kh43")]
 position = Vector2(401, -167)
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_rnx7y")]
-position = Vector2(0, -49)
-
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=1229246021]
 layer = 100
 
@@ -59,3 +56,6 @@ position = Vector2(0, -49)
 
 [node name="Checkpoint" parent="." unique_id=1992497755 instance=ExtResource("5_atuoe")]
 position = Vector2(826, -754)
+
+[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_rnx7y")]
+position = Vector2(0, -49)
