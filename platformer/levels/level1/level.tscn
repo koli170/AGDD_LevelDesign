@@ -14,8 +14,6 @@ script = ExtResource("1_5gx2l")
 top_left = NodePath("TopLeft")
 bottom_right = NodePath("BottomRight")
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("2_2itdq")]
-
 [node name="TopLeft" type="Marker2D" parent="." unique_id=1782913439]
 position = Vector2(-490, -459)
 
@@ -31,6 +29,8 @@ rendering_quadrant_size = 32
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("4_vkbyq")]
 position = Vector2(401, -167)
 next_level = ExtResource("5_j6qib")
+
+[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("2_2itdq")]
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
 layer = 100
