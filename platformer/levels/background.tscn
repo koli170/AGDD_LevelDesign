@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://ceclqpi24285e"]
+
+[ext_resource type="Shader" uid="uid://c5ajha7vuxojs" path="res://levels/background.gdshader" id="1_nltu7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nltu7"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nltu7"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_nltu7")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nltu7"]
+shader = ExtResource("1_nltu7")
+shader_parameter/noise_tex = SubResource("NoiseTexture2D_nltu7")
+
+[node name="Background" type="ColorRect" unique_id=1206663213]
+z_index = -10
+material = SubResource("ShaderMaterial_nltu7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

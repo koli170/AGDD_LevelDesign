@@ -3,6 +3,13 @@ class_name Player extends CharacterBody2D
 ## ADDED BY US:
 var block_jump := false
 
+var is_dying := false
+@export var death_slow_scale: float = 0.2
+@export var death_slow_duration: float = 0.8
+@export var death_freeze_duration: float = 0.8
+@onready var death_particles: GPUParticles2D = $GPUParticles2D
+## NOT ADDED BY US vvvvv
+
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
 const JUMP_VELOCITY = -725.0
@@ -24,9 +31,17 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 var _double_jump_charged := false
 
 func _ready() -> void:
+	$GPUParticles2D.emitting = false
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
+	if is_dying:
+		# super died
+		velocity.x = 0
+		move_and_slide()
+		return
+		
+		
 	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
 	coyote_counter += delta
 	if is_on_floor():
@@ -67,12 +82,26 @@ func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_inde
 		process_tilemap(body, body_rid)
 
 func respawn():
-	print("Respawn!")
-	global_position = respawn_point.global_position
+	if is_dying:
+		return
+		
+	$GPUParticles2D.emitting = true
+	is_dying = true
+	velocity = Vector2.ZERO
 	
+	# Btw if the last arg in .create_timer() isn't "true" it'll wait for timout second [[in slo-mo]]
+	Engine.time_scale = death_slow_scale
+	await get_tree().create_timer(death_slow_duration, false, true, true).timeout
+	Engine.time_scale = 1.0
+	await get_tree().create_timer(death_freeze_duration, false, true, true).timeout
+	
+	global_position = respawn_point.global_position
+	velocity = Vector2.ZERO
+	is_dying = false
+	$GPUParticles2D.emitting = false
 
 func try_jump() -> void:
-	if block_jump:
+	if block_jump or is_dying:
 		return
 	if is_on_floor() or (coyote_counter <= COYOTE_TIMER):
 		jump_sound.pitch_scale = 1.0
