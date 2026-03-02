@@ -68,6 +68,10 @@ rendering_quadrant_size = 32
 position = Vector2(1743, -150)
 next_level = SubResource("PackedScene_gdchn")
 
+[node name="Goal2" parent="." unique_id=534781366 instance=ExtResource("3_mmlx8")]
+position = Vector2(-332, -163)
+next_level = SubResource("PackedScene_gdchn")
+
 [node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_h11q8")]
 position = Vector2(-329.99997, -147.99998)
 

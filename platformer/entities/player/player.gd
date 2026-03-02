@@ -8,7 +8,7 @@ var is_dying := false
 @export var death_slow_duration: float = 0.8
 @export var death_freeze_duration: float = 0.8
 @onready var death_particles: GPUParticles2D = $GPUParticles2D
-## NOT ADDED BY US vvvvv
+## ADDED BY US ^^^^^^
 
 const WALK_SPEED = 300.0
 const ACCELERATION_SPEED = WALK_SPEED * 6.0
@@ -31,7 +31,7 @@ var gravity: int = ProjectSettings.get("physics/2d/default_gravity")
 var _double_jump_charged := false
 
 func _ready() -> void:
-	$GPUParticles2D.emitting = false
+	death_particles.emitting = false
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
@@ -50,6 +50,7 @@ func _physics_process(delta: float) -> void:
 		coyote_counter = 0
 	else:
 		velocity.x = move_toward(velocity.x, direction, delta*ACCELERATION_SPEED)
+		
 	if Input.is_action_just_pressed("jump" + action_suffix):
 		try_jump()
 	elif Input.is_action_just_released("jump" + action_suffix) and velocity.y < 0.0:
@@ -62,30 +63,30 @@ func _physics_process(delta: float) -> void:
 	floor_stop_on_slope = not platform_detector.is_colliding()
 	move_and_slide()
 	
+	if not is_dying:
+		_check_for_killers()
 
-func process_tilemap(tilemap: TileMapLayer, _rid: RID) -> void:
-	# Check multiple layers
-	var local_pos = tilemap.to_local(global_position)
-	var cell = tilemap.local_to_map(local_pos)
-	
-	# Check a small radius of cells in case of edge contacts
-	for dx in range(-2, 2):
-		for dy in range(-2, 2):
-			var check_cell = cell + Vector2i(dx, dy)
-			var tile_data: TileData = tilemap.get_cell_tile_data(check_cell)
+func _check_for_killers() -> void:
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider is TileMapLayer:
+			var tilemap := collider as TileMapLayer
+			var contact_point := collision.get_position()
+			var inset_point := contact_point + collision.get_normal() * 2.0
+			var local_pos := tilemap.to_local(inset_point)
+			var cell := tilemap.local_to_map(local_pos)
+			var tile_data: TileData = tilemap.get_cell_tile_data(cell)
 			if tile_data and tile_data.get_custom_data("is_killer"):
 				respawn()
 				return
-				
-func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if body is TileMapLayer:
-		process_tilemap(body, body_rid)
 
 func respawn():
 	if is_dying:
 		return
 		
-	$GPUParticles2D.emitting = true
+	death_particles.restart()
+	death_particles.emitting = true
 	is_dying = true
 	velocity = Vector2.ZERO
 	
@@ -98,7 +99,7 @@ func respawn():
 	global_position = respawn_point.global_position
 	velocity = Vector2.ZERO
 	is_dying = false
-	$GPUParticles2D.emitting = false
+	death_particles.emitting = false
 
 func try_jump() -> void:
 	if block_jump or is_dying:
@@ -107,7 +108,13 @@ func try_jump() -> void:
 		jump_sound.pitch_scale = 1.0
 	elif _double_jump_charged:
 		_double_jump_charged = false
-		velocity.x *= 2.5
+		# genuinely had to be added because of springs
+		const MAX_DOUBLE_JUMP_X := 1000.0
+		velocity.x = clamp(
+			velocity.x * 2.5,
+			-MAX_DOUBLE_JUMP_X,
+			MAX_DOUBLE_JUMP_X
+		)
 		jump_sound.pitch_scale = 1.5
 	else:
 		return
