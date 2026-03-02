@@ -1,5 +1,5 @@
 extends Area2D
-
+@export var zoom_level: float = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -12,6 +12,8 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("GO")
 	if body is Player:
-		body.camera.zoom = Vector2(0.5,0.5)
+		var tween = get_tree().create_tween()
+		tween.tween_property(body.camera, "zoom", Vector2(zoom_level,zoom_level), 1.0).set_trans(Tween.TRANS_SINE)
+		await tween.finished
+		body.camera.zoom = Vector2(zoom_level,zoom_level)
