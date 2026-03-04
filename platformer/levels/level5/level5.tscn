@@ -32,7 +32,7 @@ tile_set = ExtResource("2_s722o")
 rendering_quadrant_size = 32
 
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("3_24nf3")]
-position = Vector2(401, -167)
+position = Vector2(1041, -869)
 next_level = ExtResource("4_24nf3")
 
 [node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_82sqt")]
