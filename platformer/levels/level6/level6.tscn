@@ -133,4 +133,12 @@ Press ESC to exit."
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Label2" type="Label" parent="." unique_id=950547944]
+offset_left = -6.0
+offset_top = -172.0
+offset_right = 135.0
+offset_bottom = -123.0
+text = "Level 6:
+Hardships Indeed."
+
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]
