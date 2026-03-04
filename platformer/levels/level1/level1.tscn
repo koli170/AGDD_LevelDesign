@@ -18,7 +18,7 @@ bottom_right = NodePath("BottomRight")
 position = Vector2(-490, -459)
 
 [node name="BottomRight" type="Marker2D" parent="." unique_id=537173543]
-position = Vector2(656, 176)
+position = Vector2(656, 55)
 
 [node name="Layer0" type="TileMapLayer" parent="." unique_id=1891389520]
 use_parent_material = true

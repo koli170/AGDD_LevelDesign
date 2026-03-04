@@ -95,7 +95,7 @@ position = Vector2(3016, 256)
 launch_speed = 1200.0
 
 [node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_i6jb0")]
-position = Vector2(3056.9998, 1423.9999)
+position = Vector2(-315, -205)
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
 layer = 100
