@@ -70,7 +70,7 @@ layer = 100
 visible = false
 
 [node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_v5uiu")]
-position = Vector2(210.99998, -3106.9998)
+position = Vector2(-26.999998, -44.000008)
 respawn_point = NodePath("../Spawn")
 
 [node name="BG" type="CanvasLayer" parent="." unique_id=842602317]
@@ -128,7 +128,8 @@ offset_left = 532.0
 offset_top = -3506.0
 offset_right = 1842.0
 offset_bottom = -3306.0
-text = "Thank you for playing. You got out of the cave."
+text = "Thank you for playing. You got out of the cave.
+Press ESC to exit."
 horizontal_alignment = 1
 vertical_alignment = 1
 

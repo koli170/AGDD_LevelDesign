@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_24nf3"]
 size = Vector2(351, 207)
 
-[node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
+[node name="Level2" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
 script = ExtResource("1_l1r1r")
 top_left = NodePath("TopLeft")
