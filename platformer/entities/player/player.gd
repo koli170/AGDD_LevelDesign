@@ -6,6 +6,7 @@ var block_jump := false
 var is_dying := false
 @export var death_slow_duration: float = 0.5
 @onready var death_particles: GPUParticles2D = $GPUParticles2D
+var is_stuck := false
 ## ADDED BY US ^^^^^^
 
 const WALK_SPEED = 300.0
@@ -38,7 +39,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = 0
 		move_and_slide()
 		return
-		
+	if is_stuck:
+		gravity = 0
+	else:
+		gravity = 2100
 		
 	var direction := Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix) * WALK_SPEED
 	coyote_counter += delta
@@ -47,7 +51,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction
 		coyote_counter = 0
 	else:
-		velocity.x = move_toward(velocity.x, direction, delta*ACCELERATION_SPEED)
+		if not is_stuck:
+			velocity.x = move_toward(velocity.x, direction, delta*ACCELERATION_SPEED)
 		
 	if Input.is_action_just_pressed("jump" + action_suffix):
 		try_jump()
@@ -78,6 +83,12 @@ func _check_for_killers() -> void:
 			if tile_data and tile_data.get_custom_data("is_killer"):
 				respawn()
 				return
+			if tile_data and tile_data.get_custom_data("is_sticky"):
+				is_stuck = true
+				velocity = Vector2.ZERO
+				_double_jump_charged = true
+				return
+
 
 func respawn():
 	if is_dying:
@@ -113,9 +124,5 @@ func try_jump() -> void:
 	else:
 		return
 	velocity.y = JUMP_VELOCITY
-	var og_scale := sprite.scale
-	var tween: Tween = create_tween()
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(sprite, "scale", Vector2(og_scale.x, og_scale.y*1.2), 0.1)
-	tween.tween_property(sprite, "scale", og_scale, 0.1)
 	jump_sound.play()
+	is_stuck = false
