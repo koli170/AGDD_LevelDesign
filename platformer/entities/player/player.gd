@@ -4,9 +4,7 @@ class_name Player extends CharacterBody2D
 var block_jump := false
 
 var is_dying := false
-@export var death_slow_scale: float = 0.2
-@export var death_slow_duration: float = 0.8
-@export var death_freeze_duration: float = 0.8
+@export var death_slow_duration: float = 0.5
 @onready var death_particles: GPUParticles2D = $GPUParticles2D
 ## ADDED BY US ^^^^^^
 
@@ -90,11 +88,7 @@ func respawn():
 	is_dying = true
 	velocity = Vector2.ZERO
 	
-	# Btw if the last arg in .create_timer() isn't "true" it'll wait for timout second [[in slo-mo]]
-	Engine.time_scale = death_slow_scale
-	await get_tree().create_timer(death_slow_duration, false, true, true).timeout
-	Engine.time_scale = 1.0
-	await get_tree().create_timer(death_freeze_duration, false, true, true).timeout
+	await get_tree().create_timer(death_slow_duration).timeout
 	
 	global_position = respawn_point.global_position
 	velocity = Vector2.ZERO
