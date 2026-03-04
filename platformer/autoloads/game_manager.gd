@@ -34,3 +34,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			pause_menu.close()
 		get_tree().root.set_input_as_handled()
+		
+func _process(_delta: float) -> void:
+	if not music_player.playing:
+		music_player.play()
