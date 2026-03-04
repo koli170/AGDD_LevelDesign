@@ -42,3 +42,11 @@ layer = -100
 
 [node name="Background" parent="BG" unique_id=1206663213 instance=ExtResource("6_2itdq")]
 z_index = 0
+
+[node name="Label" type="Label" parent="." unique_id=446706114]
+offset_left = -72.0
+offset_top = -274.0
+offset_right = 130.0
+offset_bottom = -225.0
+text = "Level 1:
+I wish I could double jump"
