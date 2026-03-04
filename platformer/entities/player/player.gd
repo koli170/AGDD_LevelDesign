@@ -80,10 +80,17 @@ func _check_for_killers() -> void:
 			var local_pos := tilemap.to_local(inset_point)
 			var cell := tilemap.local_to_map(local_pos)
 			var tile_data: TileData = tilemap.get_cell_tile_data(cell)
+			
+			var surface_point := contact_point - collision.get_normal() * 2.0
+			var surface_local := tilemap.to_local(surface_point)
+			var surface_cell := tilemap.local_to_map(surface_local)
+			var surface_data: TileData = tilemap.get_cell_tile_data(surface_cell)
+
+			
 			if tile_data and tile_data.get_custom_data("is_killer"):
 				respawn()
 				return
-			if tile_data and tile_data.get_custom_data("is_sticky"):
+			if surface_data and surface_data.get_custom_data("is_sticky"):
 				is_stuck = true
 				velocity = Vector2.ZERO
 				_double_jump_charged = true
