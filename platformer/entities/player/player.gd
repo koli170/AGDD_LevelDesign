@@ -7,7 +7,6 @@ var is_dying := false
 @export var death_slow_duration: float = 0.5
 @onready var death_particles: GPUParticles2D = $GPUParticles2D
 var is_stuck := false
-var was_stuck := false
 var wall_normal := Vector2.ZERO
 ## ADDED BY US ^^^^^^
 
@@ -87,7 +86,6 @@ func _check_for_killers() -> void:
 			var surface_local := tilemap.to_local(surface_point)
 			var surface_cell := tilemap.local_to_map(surface_local)
 			var surface_data: TileData = tilemap.get_cell_tile_data(surface_cell)
-
 			
 			if tile_data and tile_data.get_custom_data("is_killer"):
 				respawn()
@@ -97,7 +95,6 @@ func _check_for_killers() -> void:
 				velocity = Vector2.ZERO
 				wall_normal = collision.get_normal()
 				return
-			is_stuck = false
 			wall_normal = Vector2.ZERO
 
 
@@ -122,20 +119,29 @@ func try_jump() -> void:
 		return
 	if is_on_floor() or (coyote_counter <= COYOTE_TIMER):
 		jump_sound.pitch_scale = 1.0
-	elif _double_jump_charged:
-		if is_stuck:
-			var input_dir := -Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix)
-
-			# Must press away from wall
-			if sign(input_dir) != sign(wall_normal.x):
-				velocity.x = wall_normal.x * 600   # push away from wall
-				_double_jump_charged = true
-				is_stuck = false
-			else:
-				return
+	elif is_stuck:
+		var input_dir := -Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix)
+		if sign(input_dir) != sign(wall_normal.x):
+			velocity.x = wall_normal.x * 600
+			_double_jump_charged = true
+			is_stuck = false
 		else:
-			_double_jump_charged = false
-
+			return
+	elif _double_jump_charged:
+		_double_jump_charged = false
+		if is_stuck:
+			if Input.is_action_pressed("move_right"):
+				velocity.x = 100
+			elif Input.is_action_pressed("move_left"):
+				velocity.x = -100
+			print(velocity.x)
+		# genuinely had to be added because of springs
+		const MAX_DOUBLE_JUMP_X := 1000.0
+		velocity.x = clamp(
+			velocity.x * 2.5,
+			-MAX_DOUBLE_JUMP_X,
+			MAX_DOUBLE_JUMP_X
+		)
 		jump_sound.pitch_scale = 1.5
 	else:
 		return
