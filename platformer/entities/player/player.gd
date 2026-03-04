@@ -7,6 +7,8 @@ var is_dying := false
 @export var death_slow_duration: float = 0.5
 @onready var death_particles: GPUParticles2D = $GPUParticles2D
 var is_stuck := false
+var was_stuck := false
+var wall_normal := Vector2.ZERO
 ## ADDED BY US ^^^^^^
 
 const WALK_SPEED = 300.0
@@ -85,9 +87,12 @@ func _check_for_killers() -> void:
 				return
 			if tile_data and tile_data.get_custom_data("is_sticky"):
 				is_stuck = true
-				velocity = Vector2.ZERO
 				_double_jump_charged = true
+				velocity = Vector2.ZERO
+				wall_normal = collision.get_normal()
 				return
+			is_stuck = false
+			wall_normal = Vector2.ZERO
 
 
 func respawn():
@@ -112,17 +117,20 @@ func try_jump() -> void:
 	if is_on_floor() or (coyote_counter <= COYOTE_TIMER):
 		jump_sound.pitch_scale = 1.0
 	elif _double_jump_charged:
-		_double_jump_charged = false
-		# genuinely had to be added because of springs
-		const MAX_DOUBLE_JUMP_X := 1000.0
-		velocity.x = clamp(
-			velocity.x * 2.5,
-			-MAX_DOUBLE_JUMP_X,
-			MAX_DOUBLE_JUMP_X
-		)
+		if is_stuck:
+			var input_dir := -Input.get_axis("move_left" + action_suffix, "move_right" + action_suffix)
+
+			# Must press away from wall
+			if sign(input_dir) != sign(wall_normal.x):
+				velocity.x = wall_normal.x * 600   # push away from wall
+				_double_jump_charged = false
+			else:
+				return
+		else:
+			_double_jump_charged = false
+
 		jump_sound.pitch_scale = 1.5
 	else:
 		return
 	velocity.y = JUMP_VELOCITY
 	jump_sound.play()
-	is_stuck = false
