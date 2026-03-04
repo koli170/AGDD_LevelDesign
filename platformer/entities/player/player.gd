@@ -113,4 +113,9 @@ func try_jump() -> void:
 	else:
 		return
 	velocity.y = JUMP_VELOCITY
+	var og_scale := sprite.scale
+	var tween: Tween = create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.tween_property(sprite, "scale", Vector2(og_scale.x, og_scale.y*1.2), 0.1)
+	tween.tween_property(sprite, "scale", og_scale, 0.1)
 	jump_sound.play()
