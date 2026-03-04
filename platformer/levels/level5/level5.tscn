@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cjgr1kswq38mn" path="res://levels/level.gd" id="1_l1r1r"]
 [ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="2_s722o"]
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="3_24nf3"]
-[ext_resource type="PackedScene" uid="uid://b7umxxhxyoveg" path="res://levels/level2/level2.tscn" id="4_rdb06"]
+[ext_resource type="PackedScene" uid="uid://b7or0pw6iyys5" path="res://levels/level6/level6.tscn" id="4_24nf3"]
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="5_82sqt"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_k277b"]
 [ext_resource type="PackedScene" uid="uid://ceclqpi24285e" path="res://levels/background.tscn" id="7_hcqrt"]
@@ -33,7 +33,7 @@ rendering_quadrant_size = 32
 
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("3_24nf3")]
 position = Vector2(401, -167)
-next_level = ExtResource("4_rdb06")
+next_level = ExtResource("4_24nf3")
 
 [node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_82sqt")]
 

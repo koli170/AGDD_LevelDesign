@@ -3,6 +3,7 @@
 [ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="1_cj05o"]
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="2_po7uj"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="3_mly2m"]
+[ext_resource type="PackedScene" uid="uid://db4t6qr3huu8j" path="res://levels/level5/level5.tscn" id="3_po7uj"]
 [ext_resource type="PackedScene" uid="uid://l44acxgsvke" path="res://entities/respawn_point/spawn_point.tscn" id="4_kewls"]
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="5_qanm7"]
 [ext_resource type="Script" uid="uid://drv3y12pqh7jh" path="res://levels/level3/camera_zoom_area.gd" id="6_3ernm"]
@@ -31,7 +32,7 @@ func _ready():
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j2g05"]
 size = Vector2(351, 207)
 
-[node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
+[node name="Level2" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
 script = SubResource("GDScript_dg6gm")
 top_left = NodePath("TopLeft")
@@ -51,6 +52,7 @@ rendering_quadrant_size = 32
 
 [node name="Goal" parent="." unique_id=134595572 instance=ExtResource("2_po7uj")]
 position = Vector2(-2143, -424)
+next_level = ExtResource("3_po7uj")
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=1229246021]
 layer = 100
