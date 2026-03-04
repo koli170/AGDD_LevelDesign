@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d1norwoag8eo7"]
 
-[ext_resource type="PackedScene" uid="uid://ctgumjaytuoch" path="res://levels/level1/level.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://ctgumjaytuoch" path="res://levels/level1/level1.tscn" id="3"]
 [ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="4_x6l06"]
 
