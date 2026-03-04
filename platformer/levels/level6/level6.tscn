@@ -1,0 +1,63 @@
+[gd_scene format=4 uid="uid://b7or0pw6iyys5"]
+
+[ext_resource type="TileSet" uid="uid://cyudtpgd42yn4" path="res://levels/tileset.tres" id="1_k0f8x"]
+[ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="2_3i14e"]
+[ext_resource type="PackedScene" uid="uid://l44acxgsvke" path="res://entities/respawn_point/spawn_point.tscn" id="2_v5uiu"]
+[ext_resource type="PackedScene" uid="uid://vh7pmputa7r3" path="res://entities/player/player.tscn" id="3_v5uiu"]
+[ext_resource type="PackedScene" uid="uid://ceclqpi24285e" path="res://levels/background.tscn" id="4_64kk1"]
+
+[sub_resource type="GDScript" id="GDScript_dg6gm"]
+script/source = "extends Node2D
+
+@export var top_left: Marker2D
+@export var bottom_right: Marker2D
+
+func _ready():
+	GameManager.pause_menu = $InterfaceLayer/PauseMenu
+	
+	for child in get_children():
+		if child is Player:
+			var camera = child.get_node(\"Camera\")
+			child.block_jump = false
+			camera.limit_left = top_left.global_position.x
+			camera.limit_top = top_left.global_position.y
+			camera.limit_right = bottom_right.global_position.x
+			camera.limit_bottom = bottom_right.global_position.y
+"
+
+[node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
+process_mode = 1
+script = SubResource("GDScript_dg6gm")
+top_left = NodePath("TopLeft")
+bottom_right = NodePath("BottomRight")
+
+[node name="TopLeft" type="Marker2D" parent="." unique_id=1782913439]
+position = Vector2(-2654, -1779)
+
+[node name="BottomRight" type="Marker2D" parent="." unique_id=537173543]
+position = Vector2(2867, 640)
+
+[node name="Layer0" type="TileMapLayer" parent="." unique_id=1891389520]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD5//7/BAAAAAAAAAD6//7/BAAAAAAAAAD7//7/BAAAAAAAAAD8//7/BAAAAAAAAAD9//7/BAAAAAAAAAD+//7/BAAAAAAAAAD///7/BAAAAAAAAAAAAP7/BAAAAAAAAAABAP7/BAAAAAAAAAACAP7/BAAAAAAAAAADAP7/BAAAAAAAAAAEAP7/BAAAAAAAAAAFAP7/BAAAAAAAAAAGAP7/BAAAAAAAAAAHAP7/BAAAAAAAAAAIAP7/BAAAAAAAAAAJAP7/BAAAAAAAAAAKAP7/BAAAAAAAAAALAP7/BAAAAAAAAAAMAP7/BAAAAAAAAAANAP7/BAAAAAAAAAAOAP7/BAAAAAAAAAAPAP7/BAAAAAAAAAAQAP7/BAAAAAAAAAARAP7/BAAAAAAAAAASAP7/BAAAAAAAAAATAP7/BAAAAAAAAAAUAP7/BAAAAAAAAAAVAP7/BAAAAAAAAAAWAP7/BAAAAAAAAAAXAP7/BAAAAAAAAAAYAP7/BAAAAAAAAAAYAP//BAAAAAAAAAAZAP//BAAAAAAAAAAEAP3/BAADAAMAAAAFAP3/BAADAAMAAAAGAP3/BAADAAMAAAAHAP3/BAADAAMAAAAIAP3/BAADAAMAAAAJAP3/BAADAAMAAAAKAP3/BAADAAMAAAALAP3/BAADAAMAAAAPAP3/BAADAAMAAAAQAP3/BAADAAMAAAARAP3/BAADAAMAAAASAP3/BAADAAMAAAD5//3/BAAAAAAAAAD5//z/BAAAAAAAAAD5//v/BAAIAAQAAAD5//r/BAAIAAQAAAD5//n/BAAIAAQAAAD5//j/BAAIAAQAAAD5//f/BAAIAAQAAAD5//b/BAAIAAQAAAAFAPj/BAAIAAMAAAA=")
+tile_set = ExtResource("1_k0f8x")
+rendering_quadrant_size = 32
+
+[node name="Spawn" parent="." unique_id=2063272948 instance=ExtResource("2_v5uiu")]
+position = Vector2(0, -32.06)
+
+[node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=1229246021]
+layer = 100
+
+[node name="PauseMenu" parent="InterfaceLayer" unique_id=1254471297 instance=ExtResource("2_3i14e")]
+visible = false
+
+[node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("3_v5uiu")]
+position = Vector2(0, -49)
+respawn_point = NodePath("../Spawn")
+
+[node name="BG" type="CanvasLayer" parent="." unique_id=842602317]
+layer = -100
+
+[node name="Background" parent="BG" unique_id=1206663213 instance=ExtResource("4_64kk1")]
+z_index = 0
