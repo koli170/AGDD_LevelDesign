@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_sl4p2"]
 [ext_resource type="PackedScene" uid="uid://ceclqpi24285e" path="res://levels/background.tscn" id="7_1lmx5"]
 [ext_resource type="Script" uid="uid://drv3y12pqh7jh" path="res://levels/level3/camera_zoom_area.gd" id="8_jvs16"]
+[ext_resource type="PackedScene" uid="uid://l44acxgsvke" path="res://entities/respawn_point/spawn_point.tscn" id="10_eeha5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mmlx8"]
 size = Vector2(251, 235.4375)
@@ -94,8 +95,9 @@ launch_speed = 1200.0
 position = Vector2(3016, 256)
 launch_speed = 1200.0
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_i6jb0")]
+[node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("5_i6jb0")]
 position = Vector2(-315, -205)
+respawn_point = NodePath("../Spawn")
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
 layer = 100
@@ -161,6 +163,17 @@ zoom_level = 0.75
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zoom_change6" unique_id=1952162840]
 position = Vector2(-6.5, -44.320313)
 shape = SubResource("RectangleShape2D_sl4p2")
+
+[node name="Label" type="Label" parent="." unique_id=542641991]
+offset_left = 1359.0
+offset_top = -294.0
+offset_right = 1425.0
+offset_bottom = -245.0
+text = "Level 3:
+The Pit"
+
+[node name="Spawn" parent="." unique_id=2063272948 instance=ExtResource("10_eeha5")]
+position = Vector2(-316, -208)
 
 [connection signal="body_entered" from="zoom_change" to="zoom_change" method="_on_body_entered"]
 [connection signal="body_entered" from="zoom_change2" to="zoom_change2" method="_on_body_entered"]

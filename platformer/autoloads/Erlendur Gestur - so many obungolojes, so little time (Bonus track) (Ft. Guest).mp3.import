@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://24fsjispp7rx"
+path="res://.godot/imported/Erlendur Gestur - so many obungolojes, so little time (Bonus track) (Ft. Guest).mp3-f65d2a56f84ccfde8b341a33ba46a18b.mp3str"
+
+[deps]
+
+source_file="res://autoloads/Erlendur Gestur - so many obungolojes, so little time (Bonus track) (Ft. Guest).mp3"
+dest_files=["res://.godot/imported/Erlendur Gestur - so many obungolojes, so little time (Bonus track) (Ft. Guest).mp3-f65d2a56f84ccfde8b341a33ba46a18b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

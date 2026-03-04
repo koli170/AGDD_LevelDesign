@@ -35,7 +35,8 @@ rendering_quadrant_size = 32
 position = Vector2(1041, -869)
 next_level = ExtResource("4_24nf3")
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_82sqt")]
+[node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("5_82sqt")]
+respawn_point = NodePath("../Spawn")
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
 layer = 100
@@ -59,5 +60,13 @@ position = Vector2(24.5, -0.49999905)
 shape = SubResource("RectangleShape2D_24nf3")
 
 [node name="Spawn" parent="." unique_id=2063272948 instance=ExtResource("9_24nf3")]
+
+[node name="Label" type="Label" parent="." unique_id=33687410]
+offset_left = -83.0
+offset_top = -395.0
+offset_right = 77.0
+offset_bottom = -346.0
+text = "Level 5:
+Temple of Hardships"
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
