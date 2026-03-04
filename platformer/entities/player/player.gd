@@ -94,7 +94,6 @@ func _check_for_killers() -> void:
 				return
 			if surface_data and surface_data.get_custom_data("is_sticky"):
 				is_stuck = true
-				_double_jump_charged = true
 				velocity = Vector2.ZERO
 				wall_normal = collision.get_normal()
 				return
@@ -130,7 +129,8 @@ func try_jump() -> void:
 			# Must press away from wall
 			if sign(input_dir) != sign(wall_normal.x):
 				velocity.x = wall_normal.x * 600   # push away from wall
-				_double_jump_charged = false
+				_double_jump_charged = true
+				is_stuck = false
 			else:
 				return
 		else:
