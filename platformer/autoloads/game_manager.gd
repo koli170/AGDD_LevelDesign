@@ -7,6 +7,14 @@ var levels: Array[PackedScene] = [
 
 
 @onready var pause_menu: PauseMenu
+@onready var music_player: AudioStreamPlayer
+
+func _ready() -> void:
+	music_player = AudioStreamPlayer.new()
+	add_child(music_player)
+	music_player.stream = load("res://autoloads/Erlendur Gestur - so many obungolojes, so little time (Bonus track) (Ft. Guest).mp3")
+	music_player.stream.loop = true
+	music_player.play()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"toggle_fullscreen"):

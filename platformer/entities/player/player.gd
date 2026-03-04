@@ -35,6 +35,9 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("reset"):
+		respawn()
+	
 	if is_dying:
 		# super died
 		velocity.x = 0
@@ -113,6 +116,7 @@ func respawn():
 	velocity = Vector2.ZERO
 	is_dying = false
 	death_particles.emitting = false
+	is_stuck = false
 
 func try_jump() -> void:
 	if block_jump or is_dying:

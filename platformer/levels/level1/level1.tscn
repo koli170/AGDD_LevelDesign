@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://bwy4m1x76lqlr" path="res://entities/goal/goal.tscn" id="4_vkbyq"]
 [ext_resource type="PackedScene" uid="uid://ceclqpi24285e" path="res://levels/background.tscn" id="6_2itdq"]
 [ext_resource type="PackedScene" uid="uid://c7ai4bigaryci" path="res://gui/pause_menu_singleplayer.tscn" id="6_dg6gm"]
+[ext_resource type="Script" uid="uid://wd0c5rpwrqp5" path="res://levels/background_to_sky.gd" id="8_8yb7b"]
+[ext_resource type="PackedScene" uid="uid://l44acxgsvke" path="res://entities/respawn_point/spawn_point.tscn" id="9_gw1fo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gw1fo"]
+size = Vector2(78, 75)
 
 [node name="Level" type="Node2D" unique_id=1800714219 node_paths=PackedStringArray("top_left", "bottom_right")]
 process_mode = 1
@@ -30,7 +35,8 @@ rendering_quadrant_size = 32
 position = Vector2(401, -167)
 next_level = ExtResource("4_3jy00")
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("2_2itdq")]
+[node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("2_2itdq")]
+respawn_point = NodePath("../Spawn")
 
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=280267556]
 layer = 100
@@ -50,3 +56,24 @@ offset_right = 130.0
 offset_bottom = -225.0
 text = "Level 1:
 I wish I could double jump"
+
+[node name="Label2" type="Label" parent="." unique_id=1213209934]
+offset_left = -94.0
+offset_top = -119.0
+offset_right = 139.0
+offset_bottom = -44.0
+text = "WASD / arrow keys
+w or up is jump, so is space.
+R to reset!"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=431455311]
+script = ExtResource("8_8yb7b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1332647666]
+position = Vector2(306, -182)
+shape = SubResource("RectangleShape2D_gw1fo")
+
+[node name="Spawn" parent="." unique_id=2063272948 instance=ExtResource("9_gw1fo")]
+position = Vector2(-1, 0)
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

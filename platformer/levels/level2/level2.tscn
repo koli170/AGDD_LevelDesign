@@ -64,8 +64,9 @@ position = Vector2(826, -754)
 [node name="Checkpoint2" parent="." unique_id=515760090 instance=ExtResource("4_db1li")]
 position = Vector2(1082, -368)
 
-[node name="Player" parent="." unique_id=2084422594 instance=ExtResource("5_2xai0")]
+[node name="Player" parent="." unique_id=2084422594 node_paths=PackedStringArray("respawn_point") instance=ExtResource("5_2xai0")]
 position = Vector2(0, -49)
+respawn_point = NodePath("../Spawn")
 
 [node name="BG" type="CanvasLayer" parent="." unique_id=842602317]
 layer = -100
