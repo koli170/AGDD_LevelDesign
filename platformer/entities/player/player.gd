@@ -35,14 +35,15 @@ func _ready() -> void:
 	add_to_group("player")
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("reset"):
-		respawn()
-	
 	if is_dying:
 		# super died
 		velocity.x = 0
 		move_and_slide()
 		return
+	if Input.is_action_just_pressed("reset"):
+		respawn()
+		return
+
 	if is_stuck:
 		gravity = 0
 	else:
